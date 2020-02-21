@@ -10,26 +10,72 @@ class TarjetaFruta extends React.Component{
         this.state={
             cantidad:5
         }
+
+        const METHODS = [
+            'agregar',
+            'quitar',
+            'limpiar'
+        ]
+
+        METHODS.forEach((method)=>{
+            this[method]=this[method].bind(this)
+        })
     }
+    agregar(){
+        // De esa manera no funciona porque apunta al metodo agregar y no a la clase TarjetaFruta
+        // this.setState({cantidad: this.state.cantidad+1});
+        this.setState({
+            cantidad: this.state.cantidad+1
+        })
+    }
+
+    quitar(){
+        // De esa manera no funciona porque apunta al metodo agregar y no a la clase TarjetaFruta
+        // this.setState({cantidad: this.state.cantidad+1});
+        this.setState({
+            cantidad: this.state.cantidad-1
+        })
+    }
+
+    limpiar(){
+        // De esa manera no funciona porque apunta al metodo agregar y no a la clase TarjetaFruta
+        // this.setState({cantidad: this.state.cantidad+1});
+        this.setState({
+            cantidad: 0
+        })
+    }
+
     render(){
         return (
             <div>
                 <h3>{this.props.name}</h3> 
-        <div>Cantidad: {this.state.cantidad}</div>
+                <div>
+                    Cantidad: {this.state.cantidad}
+                </div>
                 <button 
-                onClick={() => {
-                    // this.state.cantidad=100;
-                    this.setState({cantidad: this.state.cantidad+1});
-                    // El uso de forceupdate() no es una buena práctica
-                    // this.forceUpdate();
-                    }}>
-                Agregar
+                //Las razones por las que no se utiliza un arrow function es porque .setState ejecuta el metodo Render y React hace la comparación para verificar qué fue lo modificado. Ello en un proyecto con pocos componentes tal vez no represente mucho problema pero en uno con cientos o miles de componentes puede generar un problema.
+                onClick={
+                    // Esta línea es igual a la de abajo, solamente que el .bind(this) se mueve al constructor para que este pueda funcionar de manera más organizada
+                    // this.agregar.bind(this)}>
+                    this.agregar}>
+                +
+                </button>
+                <button 
+                onClick={
+                    this.quitar}>
+                -
+                </button>
+                <button 
+                onClick={
+                    this.limpiar}>
+                Limpiar
                 </button>
                 <p>${this.props.price}</p>
                 <hr/>
             </div>  
         )
     }
+
 }
         var FrutaExotica='Fruta de Dragon'
 const App = ()=>
