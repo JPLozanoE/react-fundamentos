@@ -1,5 +1,5 @@
 import React from 'react'
-import TarjetaFruta from './componentes/TarjetaFruta'
+import TarjetaFruta from './componentes/TarjetaFruta/'
 // en este archivo se colocaron los componentes en la App.
 // ESTE ES UN COMPONENTE FUNCIONAL, SIN ESTADO
 var FrutaExotica='Fruta de Dragon'
