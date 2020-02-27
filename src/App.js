@@ -1,52 +1,37 @@
 import React from 'react';
 import { Component } from 'react';
-// Práctica paike de eventos de REact. se trabaja con el evento onMouseMove.
-const styles=
-{
-    height: '200px',
-    background: 'gold',
-    padding: '1em',
-    boxSizing: 'border-box'
-}
+//Manejando eventos, tipos de evento y contenido de eventos.
 
-class App extends Component {
-
-    state={
-        text: 'wa',
-        evento: ''
-    }
-
-    manejador = (event) =>
+    class PersistenciaEventos extends Component
     {
-        // console.log(event)
-        this.setState({
-            text:event.target.value,
-            evento: event.type
-        })  
+        state={
+            color:'blue'
+        }
+        manejador = (e) =>
+        {
+            const color = e.target.value
+            this.setState( state => ({
+                color: color
+            })
+            )
+        }
+
+        render(){
+            return(
+                <div>
+                    <h1 style={{color:this.state.color}}>{this.state.color}</h1>
+                    <input type="text"
+                    onChange={this.manejador}
+                    />
+                </div>
+            )
+        }
     }
 
-    render() 
-    {
-        return (
-            <div>
-                <input 
-                type="text"
-                onChange={this.manejador}
-                onCopy={this.manejador}
-                onPaste={this.manejador}
-                />
-
-                <h1>
-                    {this.state.text}
-                </h1>
-                <h1>
-                    {this.state.evento}
-                </h1>
-            </div>
-
-            
-        )
-    }
-}
+ const App = () => (
+     <div>
+         <PersistenciaEventos/>
+     </div>
+ )
 
     export default App
