@@ -1,43 +1,45 @@
 import React from 'react';
 import { Component } from 'react';
 
-    class Contador extends Component
+//Práctic con componente spread y maneras de actualizar el estado.
+
+    const Gato =(props) =>
+    (
+        <div>
+            <h1>Gato 🐈</h1>
+            <pre>
+                {JSON.stringify(props,null,4)}
+            </pre>
+        </div>
+    )
+
+
+class App extends Component {
+    state=
     {
-        state={
-            video: {
-                title: 'Super video',
-                likes: 0
-            }
-        }
-        render()
+        fuerza:100,
+        vidasRestantes:7,
+        name:'Bicho'
+    }
+    render() 
+    {
+        const otrosDatos =
         {
-            return(
-                // <h1>{this.state.video.title}</h1>
-                <div>
-                    <h1>
-                        {this.state.video.title}
-                    </h1>
-                    <button onClick={this.add}>
-                        Likes: ({this.state.video.likes})
-                    </button>
-                </div>
-            )
+            raza: 'tropical',
+            peleasNocturnas:300
         }
 
-        add = () => {
-            this.setState((state)=>({
-                video:{
-                    ...state.video,
-                    likes:state.video.likes+1
-                }
-            }))
+        return (
+            <div>
+                <h1><Gato
+                name='Garfield'
+                age='1 año'
+                {...otrosDatos}
+                {...this.state}
+                /></h1>
+            </div>
+        )
     }
 }
 
-const App = ()=>
-    (
-        <div>
-            <Contador/>
-        </div>
-    )
     export default App
