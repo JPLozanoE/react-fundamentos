@@ -1,43 +1,44 @@
 import React from 'react';
 import { Component } from 'react';
-
-//Práctic con componente spread y maneras de actualizar el estado.
-
-    const Gato =(props) =>
-    (
-        <div>
-            <h1>Gato 🐈</h1>
-            <pre>
-                {JSON.stringify(props,null,4)}
-            </pre>
-        </div>
-    )
-
+// Práctica paike de eventos de REact. se trabaja con el evento
+const styles=
+{
+    height: '200px',
+    background: 'gold',
+    padding: '1em',
+    boxSizing: 'border-box'
+}
 
 class App extends Component {
-    state=
-    {
-        fuerza:100,
-        vidasRestantes:7,
-        name:'Bicho'
+
+    state={
+        x:0,
+        y:0
     }
+
+    manejador = (event) =>
+    {
+        // console.log(event)
+        this.setState({
+            x:event.clientX,
+            y:event.clientY
+        })  
+    }
+
     render() 
     {
-        const otrosDatos =
-        {
-            raza: 'tropical',
-            peleasNocturnas:300
-        }
-
         return (
+            <div style={styles}
+            onMouseMove={this.manejador}>
             <div>
-                <h1><Gato
-                name='Garfield'
-                age='1 año'
-                {...otrosDatos}
-                {...this.state}
-                /></h1>
+            X:{this.state.x}
             </div>
+            <div>
+            Y:{this.state.y}
+            </div>
+            </div>
+
+            
         )
     }
 }
