@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-// Práctica paike de eventos de REact. se trabaja con el evento
+// Práctica paike de eventos de REact. se trabaja con el evento onMouseMove.
 const styles=
 {
     height: '200px',
@@ -12,30 +12,36 @@ const styles=
 class App extends Component {
 
     state={
-        x:0,
-        y:0
+        text: 'wa',
+        evento: ''
     }
 
     manejador = (event) =>
     {
         // console.log(event)
         this.setState({
-            x:event.clientX,
-            y:event.clientY
+            text:event.target.value,
+            evento: event.type
         })  
     }
 
     render() 
     {
         return (
-            <div style={styles}
-            onMouseMove={this.manejador}>
             <div>
-            X:{this.state.x}
-            </div>
-            <div>
-            Y:{this.state.y}
-            </div>
+                <input 
+                type="text"
+                onChange={this.manejador}
+                onCopy={this.manejador}
+                onPaste={this.manejador}
+                />
+
+                <h1>
+                    {this.state.text}
+                </h1>
+                <h1>
+                    {this.state.evento}
+                </h1>
             </div>
 
             
