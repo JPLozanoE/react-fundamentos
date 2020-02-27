@@ -1,15 +1,43 @@
-import React from 'react'
-import TarjetaFruta from './componentes/TarjetaFruta/'
-// en este archivo se colocaron los componentes en la App.
-// ESTE ES UN COMPONENTE FUNCIONAL, SIN ESTADO
-var FrutaExotica='Fruta de Dragon'
+import React from 'react';
+import { Component } from 'react';
+
+    class Contador extends Component
+    {
+        state={
+            video: {
+                title: 'Super video',
+                likes: 0
+            }
+        }
+        render()
+        {
+            return(
+                // <h1>{this.state.video.title}</h1>
+                <div>
+                    <h1>
+                        {this.state.video.title}
+                    </h1>
+                    <button onClick={this.add}>
+                        Likes: ({this.state.video.likes})
+                    </button>
+                </div>
+            )
+        }
+
+        add = () => {
+            this.setState((state)=>({
+                video:{
+                    ...state.video,
+                    likes:state.video.likes+1
+                }
+            }))
+    }
+}
+
 const App = ()=>
     (
         <div>
-            <TarjetaFruta name='Sandía' price={3.45}/>
-            <TarjetaFruta name='Naranja' price={1.20} />
-            <TarjetaFruta name='kiwi' price={1.25} />
-            <TarjetaFruta name={`${FrutaExotica}`} price={2.30} />
+            <Contador/>
         </div>
     )
     export default App
