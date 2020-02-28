@@ -1,59 +1,52 @@
 import React from 'react';
 import { Component } from 'react';
-class Hijo extends Component {
-
-    // El manejador de click envía las props al evento personalizado onSaluda
-    manejadorClick = () => {
-      this.props.onSaluda('Hola Pablo','M','23')
-    }
-  
-    render () {
-      return (
-        <div className='box blue'>
-          <h2>Hijo</h2>
-          {/* El evento onClick del botón dispara el manejador de CLick */}
-          <button
-            onClick={this.manejadorClick}
-          >
-            Saluda
-          </button>
+const Saludo = (props) => {
+    return (
+      <div>
+        <div>
+            {/* Si dentro de la prop name viene llena, entonces realizar <strong>{ props.name }</strong> */}
+          { props.name && <strong>{ props.name }</strong>}
         </div>
-      )
-    }
+        
+        {/* si props trae consigo saluda */}
+        { props.saluda
+        
+          ? (
+              // Entonces retorna esto
+            <h1>Hola, tu eres genial !</h1>
+          )
+          : (
+            //   De lo contrario retorna esto
+            <p>
+              Woops, no hay saludo para ti!
+            </p>
+          )
+        }
+      </div>
+    )
+  
+    // if (props.saluda) {
+    //   return (
+    //     <h1>Hola, tu eres genial !</h1>
+    //   )
+    // }
+  
+    // return (
+    //   <p>
+    //     Woops, no hay saludo para ti!
+    //   </p>
+    // )
   }
   
-//   Las propiedades del estado deben ser definidas.
-  class App extends Component {
-    state = {
-      name: '',
-      age: '',
-      sex: ''
-    }
-
-    // El manejador recibre las props y cambia el estado
-    manejador = (name,age,sex) => {
-      this.setState({ name, age, sex })
-    }
-  
-    render () {
-      return (
-        <div className='box red'>
-          <Hijo
-        //   El evento personalizado onSaluda recurre a su propio manejador
-            onSaluda={this.manejador}
-          />
-          <h1>
-            Nombre: { this.state.name }
-          </h1>
-          <h1>
-            Edad: { this.state.age }
-          </h1>
-          <h1>
-            Sexo: { this.state.sex }
-          </h1>
-        </div>
-      )
-    }
-  }
+  const App = () => (
+    <div>
+      <Saludo
+    //   Se envía la prop saluda. esta es recibida como true.
+        saluda
+        // Se envía la prop name con el valor 'Pablo'
+        name='Pablo'
+      />
+    </div>
+  )
 
     export default App
